@@ -1,0 +1,24 @@
+clear all;
+
+% Read in the signal from the audio file
+[signal, Fs] = audioread("tones2023.wav");
+T = 1/Fs; % Sampling period; 1/(sampling frequency)
+L = length(signal); % Number of points in 'signal'
+t = [0:L-1] * T; % Time vector
+
+Y = fft(signal); % perform DFT
+
+% multiply magnitude of the output of DFT by 2/L to get the peak amplitude
+A = abs(Y)*2/L;  
+
+% '(0:L-1)' is cycles per L points; converts to cycles per second
+f = (0:L-1)*Fs/L; 
+
+% plotting only the positive frequencies; the use of '(1:1+ceil((L-1)/2))' 
+% below assures that code will work with even or odd number of samples
+plot(f(1:1+ceil((L-1)/2)),A(1:1+ceil((L-1)/2))); 
+title('Single-Sided Magnitude Spectrum');
+ylabel('Amplitude');
+xlabel('Frequency (Hz)');
+axis([0 Fs/2 0 0.5])
+grid('minor');
