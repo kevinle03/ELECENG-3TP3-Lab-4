@@ -11,7 +11,7 @@ Y = fft(signal); % perform DFT
 % multiply magnitude of the output of DFT by 2/L to get the peak amplitude
 A = abs(Y)*2/L;  
 
-% '(0:L-1)' is cycles per L points; converts to cycles per second
+% '(0:L-1)' is cycles per frame; converts to cycles per second
 f = (0:L-1)*Fs/L; 
 
 f_double_sided = (-L/2:ceil(L/2)-1)*Fs/L;
