@@ -18,6 +18,7 @@ f_double_sided = (-L/2:ceil(L/2)-1)*Fs/L;
 
 % plotting the two-sided frequency spectrum (including the negative
 % frequencies)
+% fftshift shifts points between ceil(L/2)+1 and L to the negative side
 plot(f_double_sided,fftshift(A)); 
 title('Two-Sided Magnitude Spectrum');
 ylabel('Amplitude');
