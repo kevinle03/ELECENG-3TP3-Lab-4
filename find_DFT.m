@@ -14,9 +14,22 @@ A = abs(Y)*2/L;
 % '(0:L-1)' is cycles per L points; converts to cycles per second
 f = (0:L-1)*Fs/L; 
 
-% plotting only the positive frequencies; the use of '(1:1+ceil((L-1)/2))' 
+f_double_sided = (-L/2:ceil(L/2)-1)*Fs/L;
+
+% plotting the two-sided frequency spectrum (including the negative
+% frequencies)
+plot(f_double_sided,fftshift(A)); 
+title('Two-Sided Magnitude Spectrum');
+ylabel('Amplitude');
+xlabel('Frequency (Hz)');
+axis([-Fs/2 Fs/2 0 0.5])
+grid('minor');
+
+figure()
+
+% plotting only the positive frequencies; the use of '(1:ceil(L/2))' 
 % below assures that code will work with even or odd number of samples
-plot(f(1:1+ceil((L-1)/2)),A(1:1+ceil((L-1)/2))); 
+plot(f(1:ceil(L/2)),A(1:ceil(L/2))); 
 title('Single-Sided Magnitude Spectrum');
 ylabel('Amplitude');
 xlabel('Frequency (Hz)');
