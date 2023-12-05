@@ -16,6 +16,16 @@ f = (0:L-1)*Fs/L;
 
 f_double_sided = (-L/2:ceil(L/2)-1)*Fs/L;
 
+% plotting the discrete fourier transform
+plot(f,A); 
+title('Discrete Fourier Transform');
+ylabel('Amplitude');
+xlabel('Frequency (Hz)');
+axis([0 Fs 0 0.5])
+grid('minor');
+
+figure()
+
 % plotting the two-sided frequency spectrum (including the negative
 % frequencies)
 % fftshift shifts points between ceil(L/2)+1 and L to the negative side
