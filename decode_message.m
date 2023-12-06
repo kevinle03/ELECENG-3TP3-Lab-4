@@ -10,7 +10,7 @@ symbol_period = 1; % message is encoded in 1-second duration symbol periods
 symbol_sample = symbol_period/T; % number of samples in 1 second
 
 % i and j determine which symbol period to perform DFT
-i = 12; 
+i = 75; 
 j = i+1;
 
 Y = fft(signal(symbol_sample*i+1:symbol_sample*j)); % perform DFT
@@ -21,9 +21,8 @@ A = abs(Y)*2/symbol_sample;
 % '(0:L-1)' is cycles per L points; converts to cycles per second
 f = (0:symbol_sample-1)*Fs/symbol_sample; 
 
-% plotting only the positive frequencies; the use of '(1:1+ceil((L-1)/2))' 
-% below assures that code will work with even or odd number of samples
-plot(f(1:1+ceil((symbol_sample-1)/2)),A(1:1+ceil((symbol_sample-1)/2))); 
+% plotting only the positive frequencies;
+plot(f(1:ceil(symbol_sample/2)),A(1:ceil(symbol_sample/2)));
 title('Single-Sided Magnitude Spectrum');
 ylabel('Amplitude');
 xlabel('Frequency (Hz)');
