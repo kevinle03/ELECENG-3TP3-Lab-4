@@ -22,8 +22,8 @@ for i = 0:75
     f = (0:symbol_sample-1)*Fs/symbol_sample; 
 
     % working with only the positive frequencies
-    f_shift = f(1:1+ceil((symbol_sample-1)/2));
-    A_shift = A(1:1+ceil((symbol_sample-1)/2));
+    f_shift = f(1:ceil(symbol_sample/2));
+    A_shift = A(1:ceil(symbol_sample/2));
     
     % coded characters always have corresponding frequencies with
     % an amplitude greater than 0.02
