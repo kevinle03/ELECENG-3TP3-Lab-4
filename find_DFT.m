@@ -8,18 +8,15 @@ t = [0:L-1] * T; % Time vector
 
 Y = fft(signal); % perform DFT
 
-% multiply magnitude of the output of DFT by 2/L to get the peak amplitude
-A = abs(Y)*2/L;  
-
 % '(0:L-1)' is cycles per frame; converts to cycles per second
 f = (0:L-1)*Fs/L; 
 
 f_double_sided = (-L/2:ceil(L/2)-1)*Fs/L;
 
 % plotting the discrete fourier transform
-plot(f,A); 
+plot(f,abs(Y)/L); 
 title('Discrete Fourier Transform');
-ylabel('Amplitude');
+ylabel('Magnitude');
 xlabel('Frequency (Hz)');
 axis([0 Fs 0 0.5])
 grid('minor');
@@ -29,14 +26,17 @@ figure()
 % plotting the two-sided frequency spectrum (including the negative
 % frequencies)
 % fftshift shifts points between ceil(L/2)+1 and L to the negative side
-plot(f_double_sided,fftshift(A)); 
+plot(f_double_sided,fftshift(abs(Y)/L)); 
 title('Two-Sided Magnitude Spectrum');
-ylabel('Amplitude');
+ylabel('Magnitude');
 xlabel('Frequency (Hz)');
 axis([-Fs/2 Fs/2 0 0.5])
 grid('minor');
 
 figure()
+
+% multiply magnitude of the output of DFT by 2/L to get the peak amplitude
+A = abs(Y)*2/L;
 
 % plotting only the positive frequencies; the use of '(1:ceil(L/2))' 
 % below assures that code will work with even or odd number of samples
