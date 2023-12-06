@@ -23,7 +23,7 @@ for i = 0:75
     
     %plotting all 76 symbol periods
     subplot(13,6,i+1)
-    plot(f(1:1+ceil((symbol_sample-1)/2)),A(1:1+ceil((symbol_sample-1)/2))); 
+    plot(f(1:ceil(symbol_sample/2)),A(1:ceil(symbol_sample/2))); 
     axis([0 Fs/2 0 0.1])
     grid('minor');
 end
